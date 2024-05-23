@@ -1,5 +1,6 @@
-package com.vietnhd.fbloginscreen;
+package com.vietnhd.fbloginscreen.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.vietnhd.fbloginscreen.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,10 +48,16 @@ public class MainActivity extends AppCompatActivity {
 
                 if (phoneOrEmail.isEmpty() || password.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please enter both email/phone and password", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Handle login logic here
-                    // For demonstration, we will just show a toast
+                } else if (phoneOrEmail.equals("admin") && password.equals("123456")) {
+                    // Correct credentials
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                    // Switch to HomeActivity
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                } else {
+                    // Incorrect credentials
+                    Toast.makeText(MainActivity.this, "Login Failed. Incorrect username or password.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
